@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   try {
     await initFFmpeg(setStatus);
   } catch (e) {
-    setStatus(`FFmpeg のロードに失敗しました: ${e.message}`);
+    setStatus(`Failed to load FFmpeg: ${e.message}`);
   }
 });
 
@@ -111,13 +111,13 @@ function reEvaluateAll() {
 // ---- Analysis Queue (sequential — ffmpeg.wasm is single-threaded) ----
 function enqueueFiles(files) {
   if (!isReady()) {
-    setStatus('FFmpeg まだ準備中です。少し待ってからもう一度お試しください。');
+    setStatus('FFmpeg is still loading — please wait a moment and try again.');
     return;
   }
   const large = files.filter(f => f.size > 150 * 1024 * 1024);
   if (large.length) {
     const names = large.map(f => f.name).join(', ');
-    if (!confirm(`以下のファイルは 150 MB を超えています。ブラウザのメモリが不足する可能性があります。続行しますか？\n\n${names}`)) return;
+    if (!confirm(`The following files exceed 150 MB and may run out of browser memory. Continue?\n\n${names}`)) return;
   }
   for (const file of files) {
     const tempId = 'pending-' + crypto.randomUUID();
@@ -166,7 +166,7 @@ async function runQueue() {
   }
 
   showProgress(0, 0);
-  setStatus(`完了 — ${results.length} ファイル解析済み`);
+  setStatus(`Done — ${results.length} file${results.length !== 1 ? 's' : ''} analyzed`);
   document.getElementById('btnExportCsv').disabled = false;
   document.getElementById('btnClear').disabled = false;
   analyzing = false;
@@ -182,7 +182,7 @@ function clearAll() {
   document.getElementById('dropZone').classList.remove('compact');
   document.getElementById('btnExportCsv').disabled = true;
   document.getElementById('btnClear').disabled = true;
-  setStatus('クリア完了 — ファイルをドロップして再開');
+  setStatus('Cleared — drop files to start again');
 }
 
 // ---- Helpers ----

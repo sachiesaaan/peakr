@@ -10,22 +10,22 @@ export async function analyzeFile(file, onProgress) {
   const ext    = file.name.split('.').pop().toLowerCase();
   const name   = `in_${fileId.slice(0, 8)}.${ext}`;
 
-  onProgress(`${file.name}: ファイル書き込み中...`);
+  onProgress(`${file.name}: writing file...`);
   await writeFile(name, file);
 
   try {
-    onProgress(`${file.name}: メタデータ取得中...`);
+    onProgress(`${file.name}: reading metadata...`);
     const probe = await probeFile(name);
 
-    onProgress(`${file.name}: ラウドネス解析中...`);
+    onProgress(`${file.name}: analyzing loudness...`);
     const loudnorm = await runLoudnorm(name);
 
-    onProgress(`${file.name}: ピーク・ダイナミクス解析中...`);
+    onProgress(`${file.name}: analyzing peak & dynamics...`);
     const astats = await runAstats(name);
 
     let phase = null;
     if (probe.channels === 2) {
-      onProgress(`${file.name}: フェーズ解析中...`);
+      onProgress(`${file.name}: analyzing phase...`);
       phase = await runAphasemeter(name);
     }
 

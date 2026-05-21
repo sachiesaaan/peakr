@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -29,14 +29,14 @@
       </div>
     </div>
     <div class="hdr-actions">
-      <button id="btnExportCsv" class="btn" disabled>CSV エクスポート</button>
-      <button id="btnClear" class="btn ghost" disabled>クリア</button>
+      <button id="btnExportCsv" class="btn" disabled>Export CSV</button>
+      <button id="btnClear" class="btn ghost" disabled>Clear</button>
     </div>
   </div>
 
   <!-- Threshold controls -->
   <details class="threshold-panel" id="thresholdPanel">
-    <summary>閾値設定</summary>
+    <summary>Thresholds</summary>
     <div class="threshold-grid">
 
       <div class="t-row">
@@ -82,7 +82,7 @@
       </div>
 
       <div class="t-row">
-        <label for="nAllowedSR">許可 SR</label>
+        <label for="nAllowedSR">Allowed SR</label>
         <input type="text" id="nAllowedSR" value="44100,48000" style="grid-column:span 2">
         <span class="unit">Hz</span>
       </div>
@@ -97,14 +97,14 @@
         <path d="M12 16V4m0 0L8 8m4-4 4 4" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke-linecap="round"/>
       </svg>
-      <p>音声ファイルをここにドロップ</p>
+      <p>Drop audio files here</p>
       <p class="drop-sub">WAV &middot; FLAC &middot; AIFF &middot; MP3 &middot; M4A</p>
-      <button id="btnPick" class="btn">ファイルを選択</button>
+      <button id="btnPick" class="btn">Browse files</button>
       <input type="file" id="filePicker"
              accept=".wav,.flac,.aif,.aiff,.mp3,.m4a"
              multiple hidden>
     </div>
-    <div id="ffmpegStatus" class="ffmpeg-status">FFmpeg WASM をロード中...</div>
+    <div id="ffmpegStatus" class="ffmpeg-status">Loading FFmpeg WASM...</div>
   </div>
 
   <!-- Progress bar -->

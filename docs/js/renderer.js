@@ -35,7 +35,7 @@ export function renderPendingCard(tempId, fileName) {
   el.id = tempId;
   el.innerHTML = `
   <div class="card-header">
-    <span class="badge pending">解析中</span>
+    <span class="badge pending">Analyzing</span>
     <span class="fname">${fileName}</span>
     <span class="analyzing-spinner"></span>
   </div>

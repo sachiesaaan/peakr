@@ -3,7 +3,7 @@ let FFmpegLib = null;
 let UtilLib = null;
 
 export async function initFFmpeg(onStatus) {
-  onStatus('FFmpeg WASM をロード中...');
+  onStatus('Loading FFmpeg WASM...');
 
   FFmpegLib = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js');
   UtilLib   = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js');
@@ -28,7 +28,7 @@ export async function initFFmpeg(onStatus) {
     wasmURL:  await UtilLib.toBlobURL(`${coreBase}/ffmpeg-core.wasm`, 'application/wasm'),
   });
 
-  onStatus('FFmpeg 準備完了 — ファイルをドロップして分析を開始');
+  onStatus('FFmpeg ready — drop files to start analysis');
 }
 
 export function isReady() {
