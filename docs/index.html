@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>LUFS Lens — Web Edition</title>
+  <title>peakr — loudness &amp; dynamics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,10 +15,17 @@
   <!-- Header -->
   <div class="hdr">
     <div class="brand">
-      <img src="assets/LufsLensLogo.png" alt="LUFS Lens" id="logo">
-      <div>
-        <h1>LUFS Lens</h1>
-        <div class="sub">Web Edition &middot; Because it sounded louder in the studio.</div>
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3"  y="14" width="4" height="11" rx="1"/>
+          <rect x="10" y="8"  width="4" height="17" rx="1"/>
+          <rect x="17" y="3"  width="4" height="22" rx="1"/>
+          <line x1="0" y1="25.5" x2="28" y2="25.5" stroke-width="1"/>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <h1>peakr<span class="brand-dot">.</span></h1>
+        <div class="sub">Loudness &amp; dynamics analyzer<span class="sub-sep">/</span>know your levels</div>
       </div>
     </div>
     <div class="hdr-actions">
@@ -113,12 +123,7 @@
 
   <!-- Footer -->
   <div class="footer">
-    If it's red, it's dead.<br>
-    <a href="mailto:lufslens@gmail.com">lufslens@gmail.com</a>
-    &nbsp;&middot;&nbsp;
-    <a class="donate" href="https://ko-fi.com/lufslens" target="_blank" rel="noopener">
-      Buy the limiter a coffee
-    </a>
+    peakr &mdash; Audio loudness &amp; dynamics analysis.
   </div>
 
 </div>
