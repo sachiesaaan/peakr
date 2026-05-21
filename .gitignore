@@ -1,0 +1,13 @@
+# Bundled FFmpeg binaries (too large for git)
+ffmpeg/bin/
+
+# Analysis output
+Reports/
+temp/
+
+# Dev tool config
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
