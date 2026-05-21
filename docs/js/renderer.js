@@ -208,14 +208,12 @@ export function renderLegend(thresholds) {
 export function showProgress(total, done) {
   const bar  = document.getElementById('progressBar');
   const fill = document.getElementById('progressFill');
-  const text = document.getElementById('progressText');
   if (total === 0) {
     bar.classList.add('hidden');
     return;
   }
   bar.classList.remove('hidden');
   fill.style.width = `${(done / total * 100).toFixed(1)}%`;
-  text.textContent = `解析中 ${done} / ${total}`;
 }
 
 export function setStatus(msg) {
