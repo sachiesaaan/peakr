@@ -2,7 +2,7 @@ import { initFFmpeg, isReady }    from './ffmpeg-runner.js';
 import { analyzeFile, rawStore }  from './analyzer.js';
 import { evaluate }               from './evaluator.js';
 import {
-  renderCard, updateCard,
+  renderCard, renderPendingCard, updateCard,
   renderStats, renderLegend,
   showProgress, setStatus,
 } from './renderer.js';
@@ -119,7 +119,11 @@ function enqueueFiles(files) {
     const names = large.map(f => f.name).join(', ');
     if (!confirm(`以下のファイルは 150 MB を超えています。ブラウザのメモリが不足する可能性があります。続行しますか？\n\n${names}`)) return;
   }
-  queue.push(...files);
+  for (const file of files) {
+    const tempId = 'pending-' + crypto.randomUUID();
+    renderPendingCard(tempId, file.name);
+    queue.push({ file, tempId });
+  }
   if (!analyzing) runQueue();
 }
 
@@ -131,7 +135,7 @@ async function runQueue() {
   const totalNew   = queue.length;
 
   while (queue.length > 0) {
-    const file = queue.shift();
+    const { file, tempId } = queue.shift();
     const done = results.length - startCount;
     showProgress(totalNew, done);
 
@@ -156,7 +160,7 @@ async function runQueue() {
     const result    = { raw, evaluated };
     results.push(result);
 
-    renderCard(result, thresholds);
+    renderCard(result, thresholds, tempId);
     renderStats(results, thresholds);
     renderLegend(thresholds);
   }

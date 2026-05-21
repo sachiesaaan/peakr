@@ -98,11 +98,11 @@ export async function runAstats(inputName) {
 
   const peakVals = [], rmsVals = [], rms1 = [], rms2 = [];
   for (const l of lines) {
-    let m;
-    if ((m = l.match(/lavfi\.astats\.Overall\.Peak_level=([-\d.]+)/)))  peakVals.push(+m[1]);
-    if ((m = l.match(/lavfi\.astats\.Overall\.RMS_level=([-\d.]+)/)))   rmsVals.push(+m[1]);
-    if ((m = l.match(/lavfi\.astats\.1\.RMS_level=([-\d.]+)/)))         rms1.push(+m[1]);
-    if ((m = l.match(/lavfi\.astats\.2\.RMS_level=([-\d.]+)/)))         rms2.push(+m[1]);
+    let m, v;
+    if ((m = l.match(/lavfi\.astats\.Overall\.Peak_level=(\S+)/)))  { v = parseFloat(m[1]); if (isFinite(v)) peakVals.push(v); }
+    if ((m = l.match(/lavfi\.astats\.Overall\.RMS_level=(\S+)/)))   { v = parseFloat(m[1]); if (isFinite(v)) rmsVals.push(v); }
+    if ((m = l.match(/lavfi\.astats\.1\.RMS_level=(\S+)/)))         { v = parseFloat(m[1]); if (isFinite(v)) rms1.push(v); }
+    if ((m = l.match(/lavfi\.astats\.2\.RMS_level=(\S+)/)))         { v = parseFloat(m[1]); if (isFinite(v)) rms2.push(v); }
   }
 
   const safeMax = arr => arr.length ? Math.max(...arr) : null;

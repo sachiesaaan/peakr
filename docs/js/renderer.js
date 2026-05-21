@@ -29,13 +29,29 @@ function issueClass(tag) {
   return crits.includes(tag) ? 'crit' : 'warn';
 }
 
-export function renderCard(result, thresholds) {
-  const { raw, evaluated } = result;
+export function renderPendingCard(tempId, fileName) {
   const el = document.createElement('div');
+  el.className = 'card pending';
+  el.id = tempId;
+  el.innerHTML = `
+  <div class="card-header">
+    <span class="badge pending">解析中</span>
+    <span class="fname">${fileName}</span>
+    <span class="analyzing-spinner"></span>
+  </div>
+  <div class="pending-shimmer"></div>`;
+  document.getElementById('tracksArea').appendChild(el);
+}
+
+export function renderCard(result, thresholds, tempId) {
+  const { raw, evaluated } = result;
+  const pending = tempId ? document.getElementById(tempId) : null;
+  const el = pending || document.createElement('div');
+  if (!pending) document.getElementById('tracksArea').appendChild(el);
+  el.removeAttribute('id');
   el.className = `card ${evaluated.status}`;
   el.dataset.id = raw.fileId;
   el.innerHTML = buildCardHTML(raw, evaluated, thresholds);
-  document.getElementById('tracksArea').appendChild(el);
 }
 
 export function updateCard(fileId, evaluated, thresholds) {

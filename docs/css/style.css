@@ -97,6 +97,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pl{font-size:9px;color:#b0b0b0;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
 .pv{font-size:12px;font-weight:600;color:#444;font-variant-numeric:tabular-nums}
 
+/* ---- Pending / analyzing card ---- */
+.card.pending { border-left-color: #6366f1; }
+.badge.pending { background: #ede9fe; color: #6366f1; }
+.pending-shimmer {
+  height: 8px; border-radius: 4px; margin-top: 4px;
+  background: linear-gradient(90deg, #ececec 25%, #d4d4ff 50%, #ececec 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.analyzing-spinner {
+  width: 14px; height: 14px; flex-shrink: 0;
+  border: 2px solid #e0e0e0; border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
 /* ---- Issues ---- */
 .issue-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
 .issue{font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:20px;text-transform:uppercase}
